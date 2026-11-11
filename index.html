@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101827">
+<meta name="description" content="Pesquisa gratuita de palavras-chave e auditoria SEO básica para conteúdo e afiliados.">
+<title>OpenSEO Lite — SEO gratuito</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#"><span class="brand-mark">O</span><span>OpenSEO <b>Lite</b></span></a>
+  <span class="free-tag">GRATUITO · SEM API PAGA</span>
+</header>
+<main class="container">
+  <section class="hero">
+    <p class="eyebrow">SEO simples para quem cria conteúdo</p>
+    <h1>Encontre palavras-chave.<br><em>Melhore suas páginas.</em></h1>
+    <p class="hero-copy">Pesquisa exploratória e auditoria básica para blogs, páginas de produto e conteúdo de afiliados Shopee.</p>
+  </section>
+
+  <nav class="tabs" aria-label="Ferramentas">
+    <button class="tab active" data-tab="keywords">Pesquisa de palavras-chave</button>
+    <button class="tab" data-tab="audit">Auditoria de página</button>
+  </nav>
+
+  <section id="keywords" class="panel">
+    <div class="section-head"><div><p class="eyebrow">DESCOBERTA</p><h2>Ideias de palavras-chave</h2></div><span class="step">01 / 02</span></div>
+    <form id="keyword-form" class="search-form">
+      <label for="seed">Produto, assunto ou palavra principal</label>
+      <div class="input-row"><input id="seed" required maxlength="120" placeholder="Ex.: organizador de cozinha" value=""><button class="primary" type="submit">Pesquisar ideias <span>→</span></button></div>
+      <div class="chips"><button type="button" class="chip" data-seed="kit de cozinha">Kit de cozinha</button><button type="button" class="chip" data-seed="fone bluetooth">Fone bluetooth</button><button type="button" class="chip" data-seed="limpeza doméstica">Limpeza doméstica</button></div>
+    </form>
+    <div id="keyword-status" class="status" aria-live="polite">Digite um tema para encontrar sugestões.</div>
+    <div id="keyword-results"></div>
+  </section>
+
+  <section id="audit" class="panel hidden">
+    <div class="section-head"><div><p class="eyebrow">DIAGNÓSTICO</p><h2>Auditoria SEO básica</h2></div><span class="step">02 / 02</span></div>
+    <form id="audit-form" class="search-form">
+      <label for="url">Endereço público da página</label>
+      <div class="input-row"><input id="url" type="url" required placeholder="https://exemplo.com/produto"><button class="primary" type="submit">Analisar página <span>→</span></button></div>
+      <p class="hint">Analisa o HTML que o site disponibiliza publicamente. Páginas protegidas ou renderizadas apenas por JavaScript podem ter leitura limitada.</p>
+    </form>
+    <div id="audit-status" class="status" aria-live="polite">Informe uma URL completa, começando por https://.</div>
+    <div id="audit-results"></div>
+  </section>
+  <footer><span>OpenSEO Lite · Projeto independente</span><span>Sem volume de busca inventado. Sem cobrança por API.</span></footer>
+</main>
+<script src="/app.js" defer></script>
+</body>
+</html>
