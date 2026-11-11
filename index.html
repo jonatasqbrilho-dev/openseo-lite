@@ -1,53 +1,80 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#101827">
-<meta name="description" content="Pesquisa gratuita de palavras-chave e auditoria SEO básica para conteúdo e afiliados.">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Pesquisa gratuita de palavras-chave e auditoria SEO local.">
 <title>OpenSEO Lite — SEO gratuito</title>
-<link rel="stylesheet" href="/styles.css">
-</head>
+<style>
+:root{color-scheme:dark;--bg:#0b1220;--p:#142238;--line:#293c58;--txt:#edf3ff;--muted:#9aabc4;--green:#42d392}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.55 system-ui,Arial}
+header,main{max-width:1100px;margin:auto;padding:22px}header{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+h1{font-size:21px;margin:0}header small,.muted{color:var(--muted)}.pill{color:#9be9c5;border:1px solid #28654e;border-radius:30px;padding:5px 10px;font-size:12px}
+.hero{padding:30px 0}.hero h2{font-size:clamp(28px,5vw,42px);line-height:1.1;margin:0 0 10px}.hero p{color:var(--muted)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}.tab,button{cursor:pointer;border-radius:9px;padding:10px 14px;border:1px solid var(--line);background:#20334e;color:var(--txt)}
+.tab.active,.primary{background:var(--green);color:#071a18;border-color:var(--green);font-weight:700}
+.panel{background:var(--p);border:1px solid var(--line);border-radius:14px;padding:18px;margin:15px 0}.panel h3{margin:0}.muted{font-size:13px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:grid;gap:6px;margin:12px 0}
+.field input,.field textarea,.field select{width:100%;background:#091426;border:1px solid var(--line);color:var(--txt);border-radius:9px;padding:11px;font:inherit}
+.field textarea{min-height:190px}.actions{display:flex;gap:8px;flex-wrap:wrap}.status{color:var(--muted);margin:12px 0;font-size:13px}
+.results{overflow:auto;margin-top:14px}.table{width:100%;border-collapse:collapse;font-size:13px}.table th,.table td{padding:10px;text-align:left;border-bottom:1px solid var(--line)}
+.table th{color:#b9cbe3}.hidden{display:none}.empty{border:1px dashed var(--line);padding:22px;text-align:center;color:var(--muted);border-radius:10px}
+.tag{font-size:11px;border:1px solid #456080;border-radius:20px;padding:3px 8px}.notice{background:#0b1d2b;border:1px solid #23513f;padding:12px;border-radius:10px;color:#bdebd5;font-size:13px}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.metric{background:#0b1728;padding:12px;border:1px solid var(--line);border-radius:10px}
+.metric b{display:block;font-size:23px}.ok{color:var(--green)}.warn{color:#ffd166}.bad{color:#ff8585}
+@media(max-width:650px){.grid{grid-template-columns:1fr}.metrics{grid-template-columns:1fr 1fr}header,main{padding:16px}}
+</style></head>
 <body>
-<header class="topbar">
-  <a class="brand" href="#"><span class="brand-mark">O</span><span>OpenSEO <b>Lite</b></span></a>
-  <span class="free-tag">GRATUITO · SEM API PAGA</span>
-</header>
-<main class="container">
-  <section class="hero">
-    <p class="eyebrow">SEO simples para quem cria conteúdo</p>
-    <h1>Encontre palavras-chave.<br><em>Melhore suas páginas.</em></h1>
-    <p class="hero-copy">Pesquisa exploratória e auditoria básica para blogs, páginas de produto e conteúdo de afiliados Shopee.</p>
-  </section>
-
-  <nav class="tabs" aria-label="Ferramentas">
-    <button class="tab active" data-tab="keywords">Pesquisa de palavras-chave</button>
-    <button class="tab" data-tab="audit">Auditoria de página</button>
-  </nav>
-
-  <section id="keywords" class="panel">
-    <div class="section-head"><div><p class="eyebrow">DESCOBERTA</p><h2>Ideias de palavras-chave</h2></div><span class="step">01 / 02</span></div>
-    <form id="keyword-form" class="search-form">
-      <label for="seed">Produto, assunto ou palavra principal</label>
-      <div class="input-row"><input id="seed" required maxlength="120" placeholder="Ex.: organizador de cozinha" value=""><button class="primary" type="submit">Pesquisar ideias <span>→</span></button></div>
-      <div class="chips"><button type="button" class="chip" data-seed="kit de cozinha">Kit de cozinha</button><button type="button" class="chip" data-seed="fone bluetooth">Fone bluetooth</button><button type="button" class="chip" data-seed="limpeza doméstica">Limpeza doméstica</button></div>
-    </form>
-    <div id="keyword-status" class="status" aria-live="polite">Digite um tema para encontrar sugestões.</div>
-    <div id="keyword-results"></div>
-  </section>
-
-  <section id="audit" class="panel hidden">
-    <div class="section-head"><div><p class="eyebrow">DIAGNÓSTICO</p><h2>Auditoria SEO básica</h2></div><span class="step">02 / 02</span></div>
-    <form id="audit-form" class="search-form">
-      <label for="url">Endereço público da página</label>
-      <div class="input-row"><input id="url" type="url" required placeholder="https://exemplo.com/produto"><button class="primary" type="submit">Analisar página <span>→</span></button></div>
-      <p class="hint">Analisa o HTML que o site disponibiliza publicamente. Páginas protegidas ou renderizadas apenas por JavaScript podem ter leitura limitada.</p>
-    </form>
-    <div id="audit-status" class="status" aria-live="polite">Informe uma URL completa, começando por https://.</div>
-    <div id="audit-results"></div>
-  </section>
-  <footer><span>OpenSEO Lite · Projeto independente</span><span>Sem volume de busca inventado. Sem cobrança por API.</span></footer>
+<header><div><h1>◈ OpenSEO Lite</h1><small>Pesquisa e auditoria SEO sem mensalidade</small></div><span class="pill">Sem API paga · Sem cartão</span></header>
+<main>
+<section class="hero"><h2>Encontre oportunidades para seus conteúdos.</h2><p>Ferramenta gratuita para palavras-chave, agrupamento de ideias e revisão SEO de páginas — útil para sites e afiliados.</p></section>
+<nav class="tabs"><button class="tab active" data-tab="kw">Palavras-chave</button><button class="tab" data-tab="audit">Auditoria SEO</button><button class="tab" data-tab="saved">Minha lista</button></nav>
+<section id="kw" class="view">
+<div class="panel"><h3>Pesquisa de palavras-chave</h3><p class="muted">Busca sugestões públicas do Google quando o navegador permite. Não mostra volume de busca.</p>
+<div class="grid"><div class="field"><label>Produto ou assunto</label><input id="seed" placeholder="Ex.: organizador de cozinha"></div>
+<div class="field"><label>Idioma</label><select id="lang"><option value="pt-BR">Português (Brasil)</option><option value="en-US">English (US)</option><option value="es-ES">Español</option></select></div></div>
+<div class="actions"><button class="primary" id="search">Buscar sugestões</button><button id="local">Gerar variações locais</button></div><div class="status" id="status"></div>
+<div class="results" id="results"><div class="empty">Digite um termo para começar.</div></div></div>
+<div class="panel"><h3>Agrupador de palavras-chave</h3><p class="muted">Cole uma palavra-chave por linha.</p><div class="field"><textarea id="cluster" placeholder="organizador de cozinha&#10;organizador de armário&#10;pote hermético&#10;kit potes cozinha"></textarea></div>
+<button class="primary" id="group">Agrupar palavras</button><div id="groups" class="results"></div></div></section>
+<section id="audit" class="view hidden"><div class="panel"><h3>Auditoria SEO on-page</h3><p class="muted">Cole o HTML-fonte. A análise acontece no navegador.</p>
+<div class="field"><label>HTML da página</label><textarea id="html" placeholder="Cole o código-fonte HTML aqui..."></textarea></div>
+<div class="actions"><button class="primary" id="runAudit">Analisar página</button><button id="example">Carregar exemplo</button></div><div id="auditResult" class="results"></div>
+<p class="notice">Para copiar o HTML: abra a página no navegador, pressione Ctrl+U, depois Ctrl+A e Ctrl+C. Cole aqui. A leitura direta de sites externos costuma ser bloqueada pelo CORS.</p></div></section>
+<section id="saved" class="view hidden"><div class="panel"><h3>Minha lista</h3><p class="muted">Salva somente neste navegador.</p><div class="actions"><button id="csv">Exportar CSV</button><button id="clear">Limpar lista</button></div><div id="savedResult" class="results"></div></div></section>
+<p class="muted" style="text-align:center">OpenSEO Lite · Sugestões não representam volume de busca nem garantia de vendas.</p>
 </main>
-<script src="/app.js" defer></script>
-</body>
-</html>
+<script>
+const $=s=>document.querySelector(s),all=s=>[...document.querySelectorAll(s)];let saved=[];try{saved=JSON.parse(localStorage.getItem('osl_saved')||'[]')}catch{}
+const persist=()=>localStorage.setItem('osl_saved',JSON.stringify(saved));
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const csv=r=>'\ufeff'+r.map(x=>x.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(';')).join('\r\n');
+function dl(n,t){let a=document.createElement('a'),u=URL.createObjectURL(new Blob([t],{type:'text/csv;charset=utf-8'}));a.href=u;a.download=n;a.click();URL.revokeObjectURL(u)}
+all('.tab').forEach(b=>b.onclick=()=>{all('.tab').forEach(x=>x.classList.toggle('active',x===b));all('.view').forEach(x=>x.classList.toggle('hidden',x.id!==b.dataset.tab));if(b.dataset.tab==='saved')renderSaved()});
+function render(list){if(!list.length){$('#results').innerHTML='<div class="empty">Nenhuma sugestão retornada. Tente variações locais.</div>';return}
+$('#results').innerHTML='<table class="table"><tr><th>Palavra-chave</th><th>Fonte</th><th></th></tr>'+list.map((x,i)=>'<tr><td>'+esc(x.word)+'</td><td><span class="tag">'+esc(x.source)+'</span></td><td><button data-save="'+i+'">Salvar</button></td></tr>').join('')+'</table>';
+all('[data-save]').forEach(b=>b.onclick=()=>{let x=list[+b.dataset.save];if(!saved.some(y=>y.word.toLowerCase()===x.word.toLowerCase()))saved.push({...x,date:new Date().toLocaleDateString('pt-BR')});persist();b.textContent='Salva'})}
+async function suggest(q,hl){let r=await fetch('https://suggestqueries.google.com/complete/search?client=firefox&hl='+encodeURIComponent(hl)+'&q='+encodeURIComponent(q));if(!r.ok)throw Error('Falha');let d=await r.json();return(d[1]||[]).map(word=>({word,source:'Google'}))}
+$('#search').onclick=async()=>{let q=$('#seed').value.trim();if(!q)return $('#status').textContent='Digite um produto ou assunto.';$('#search').disabled=true;$('#status').textContent='Consultando sugestões públicas...';
+try{let data=await suggest(q,$('#lang').value);for(let m of [' barato',' preço',' promoção',' vale a pena',' como usar',' melhor'])try{data.push(...await suggest(q+m,$('#lang').value))}catch{}
+let seen=new Set();data=data.filter(x=>{let k=x.word.toLowerCase();if(seen.has(k))return false;seen.add(k);return true});$('#status').textContent=data.length+' sugestões. Sem métricas de volume/dificuldade.';render(data)}
+catch{$('#status').textContent='A consulta foi bloqueada pela rede ou pelo navegador. Use as variações locais.';render([])}finally{$('#search').disabled=false}};
+$('#local').onclick=()=>{let q=$('#seed').value.trim();if(!q)return $('#status').textContent='Digite um produto ou assunto.';
+let mods=['',' barato',' promoção',' preço',' vale a pena',' é bom',' como funciona',' como usar',' para casa',' compacto',' resistente',' original',' kit',' melhor custo benefício',' avaliação',' review',' comprar online',' Shopee',' presente',' ofertas'];
+let data=mods.map(x=>({word:q+x,source:'Variação local'}));$('#status').textContent='Variações geradas localmente; não são métricas de busca.';render(data)};
+function toks(s){return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').split(/[^a-z0-9]+/).filter(x=>x.length>2&&!['para','com','sem','uma','que','por','das','dos'].includes(x))}
+$('#group').onclick=()=>{let words=[...new Set($('#cluster').value.split(/\n|,/).map(x=>x.trim()).filter(Boolean))],gs=[];
+for(let w of words){let t=toks(w),best=null,score=0;for(let g of gs){let gt=toks(g.join(' ')),n=t.filter(x=>gt.includes(x)).length/(new Set([...t,...gt]).size||1);if(n>score){score=n;best=g}}
+if(best&&score>=.22)best.push(w);else gs.push([w])}
+$('#groups').innerHTML=gs.length?gs.map((g,i)=>'<div class="panel"><b>Grupo '+(i+1)+'</b> <span class="tag">'+g.length+' termos</span><p>'+g.map(esc).join(' · ')+'</p></div>').join(''):'<div class="empty">Cole palavras-chave para agrupar.</div>'};
+$('#example').onclick=()=>$('#html').value='<!doctype html><html><head><title>Kit de potes herméticos para cozinha</title><meta name="description" content="Conheça um kit de potes herméticos para organizar sua cozinha. Veja características e dicas."><link rel="canonical" href="https://exemplo.com/kit-potes"></head><body><h1>Kit de potes herméticos para cozinha</h1><h2>Benefícios do kit</h2><img src="potes.jpg" alt="Kit de potes transparentes"><a href="/organizacao">Dicas de organização</a></body></html>';
+$('#runAudit').onclick=()=>{let raw=$('#html').value;if(!raw.trim())return $('#auditResult').innerHTML='<div class="empty">Cole o HTML antes de analisar.</div>';
+let d=new DOMParser().parseFromString(raw,'text/html'),title=d.querySelector('title')?.textContent.trim()||'',desc=d.querySelector('meta[name="description" i]')?.content?.trim()||'',h1=d.querySelectorAll('h1').length,h2=d.querySelectorAll('h2').length,imgs=[...d.images],noAlt=imgs.filter(x=>!x.hasAttribute('alt')||!x.alt.trim()).length,links=d.querySelectorAll('a[href]').length;
+let canonical=!!d.querySelector('link[rel="canonical"]'),viewport=!!d.querySelector('meta[name="viewport"]');
+let checks=[['Título SEO',!!title,title?title.length+' caracteres':'Ausente',title.length>=30&&title.length<=60],['Meta description',!!desc,desc?desc.length+' caracteres':'Ausente',desc.length>=120&&desc.length<=160],['H1',h1===1,h1+' encontrado(s)',h1===1],['H2',h2>0,h2+' encontrado(s)',h2>0],['ALT de imagens',noAlt===0,noAlt+' sem ALT',noAlt===0],['Links',links>0,links+' encontrado(s)',links>0],['Canonical',canonical,canonical?'Encontrada':'Ausente',canonical],['Viewport',viewport,viewport?'Encontrado':'Ausente',viewport]],score=Math.round(checks.filter(x=>x[1]).length/8*100);
+$('#auditResult').innerHTML='<div class="metrics"><div class="metric"><b>'+score+'/100</b><small>itens atendidos</small></div><div class="metric"><b>'+h1+'</b><small>H1</small></div><div class="metric"><b>'+imgs.length+'</b><small>imagens</small></div><div class="metric"><b>'+links+'</b><small>links</small></div></div><table class="table"><tr><th>Teste</th><th>Status</th><th>Detalhe</th></tr>'+checks.map(x=>'<tr><td>'+x[0]+'</td><td class="'+(x[1]?'ok':x[3]?'warn':'bad')+'">'+(x[1]?'OK':'Atenção')+'</td><td>'+esc(x[2])+'</td></tr>').join('')+'</table><p><b>Title:</b> '+esc(title||'—')+'</p><p><b>Description:</b> '+esc(desc||'—')+'</p><button id="auditCsv">Baixar relatório CSV</button>';
+$('#auditCsv').onclick=()=>dl('auditoria-seo.csv',csv([['Teste','Status','Detalhe'],...checks.map(x=>[x[0],x[1]?'OK':'Atenção',x[2]])]))};
+function renderSaved(){if(!saved.length)return $('#savedResult').innerHTML='<div class="empty">Sua lista está vazia.</div>';
+$('#savedResult').innerHTML='<table class="table"><tr><th>Termo</th><th>Fonte</th><th>Data</th><th></th></tr>'+saved.map((x,i)=>'<tr><td>'+esc(x.word)+'</td><td>'+esc(x.source)+'</td><td>'+esc(x.date)+'</td><td><button data-del="'+i+'">Excluir</button></td></tr>').join('')+'</table>';
+all('[data-del]').forEach(b=>b.onclick=()=>{saved.splice(+b.dataset.del,1);persist();renderSaved()})}
+$('#csv').onclick=()=>dl('palavras-chave.csv',csv([['Palavra-chave','Fonte','Data'],...saved.map(x=>[x.word,x.source,x.date])]));$('#clear').onclick=()=>{if(confirm('Apagar lista salva neste navegador?')){saved=[];persist();renderSaved()}};renderSaved();
+</script></body></html>
